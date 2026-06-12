@@ -102,9 +102,24 @@ public class ClaimService {
 
     private ClaimResponse toResponse(Claim claim) {
         User current = currentUserService.getCurrentUser();
+
         Item item = itemRepository.findById(claim.getItemId()).orElse(null);
+
         User claimer = userRepository.findById(claim.getClaimerId()).orElse(null);
-        boolean canViewContact = current.getRole() == Role.ADMIN || current.getId().equals(claim.getClaimerId()) || current.getId().equals(claim.getOwnerId());
-        return ClaimMapper.toResponse(claim, item, claimer, canViewContact);
+
+        User owner = userRepository.findById(claim.getOwnerId()).orElse(null);
+
+        boolean canViewContact =
+                current.getRole() == Role.ADMIN
+                        || current.getId().equals(claim.getClaimerId())
+                        || current.getId().equals(claim.getOwnerId());
+
+        return ClaimMapper.toResponse(
+                claim,
+                item,
+                claimer,
+                owner,
+                canViewContact
+        );
     }
 }
