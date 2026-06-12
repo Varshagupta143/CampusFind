@@ -1,0 +1,33 @@
+backend/target/
+frontend/node_modules/
+frontend/dist/
+.env
+.DS_Store
+backend/uploads/
+# Java / Spring Boot
+
+*.class
+*.jar
+*.war
+
+# Maven
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Node / React
+
+frontend/.env
+
+# IntelliJ
+.idea/
+*.iml
+
+# OS files
+
+Thumbs.db
+
+
+
+# Environment files
+
+.env.local
+application-secret.properties
